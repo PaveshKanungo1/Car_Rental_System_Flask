@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rental History</title>
+</head>
+<body>
+    <h1>Rental History</h1>
+    <p>Here is the list of cars you've rented:</p>
+
+    <ul>
+        {% for rental in rentals %}
+            <li>{{ rental.car.make }} {{ rental.car.model }} - Rented on: {{ rental.rental_date }} 
+                {% if rental.return_date %}
+                    - Returned on: {{ rental.return_date }}
+                {% else %}
+                    - Not returned yet
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('user_dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

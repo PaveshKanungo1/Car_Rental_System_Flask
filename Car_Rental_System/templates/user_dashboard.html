@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+</head>
+<body>
+    <h1>User Dashboard</h1>
+    <p>Welcome, {{ current_user.username }}!</p>
+
+    <h2>Available Cars</h2>
+    <ul>
+        {% for car in cars %}
+            <li>{{ car.make }} {{ car.model }}
+                <form action="{{ url_for('rent_car', car_id=car.id) }}" method="POST" style="display:inline;">
+                    <button type="submit">Rent</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('rental_history') }}">View Rental History</a> |
+    <a href="{{ url_for('home') }}">Back to Home</a>
+</body>
+</html>
